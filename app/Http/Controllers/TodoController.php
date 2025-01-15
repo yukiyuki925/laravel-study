@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -29,7 +30,20 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //リクエストデータを取得
+        $data = $request->all();
+
+        // モデルを作成し、データをセット
+        $Todo = new Todo();
+        $Todo->title = $data['title'];
+        $Todo->date = $data['date'];
+        $Todo->memo = $data['memo'];
+
+        // データを保存
+        $Todo->save();
+
+        // 一覧ページにリダイレクト
+        return redirect(route('todos.index'));
     }
 
     /**
