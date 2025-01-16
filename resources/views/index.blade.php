@@ -9,7 +9,15 @@
         <div class="index mt-4">
             @foreach ($todos as $todo)
                 <ul>
-                    <li><a href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a></li>
+                    <div class="d-flex align-items-center">
+                        <li><a href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a></li>
+                        <form method="POST" action="{{ route('todos.destroy', $todo->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm ml-3"
+                                onclick="return confirm('削除しますか？')">削除</button>
+                        </form>
+                    </div>
                 </ul>
             @endforeach
         </div>

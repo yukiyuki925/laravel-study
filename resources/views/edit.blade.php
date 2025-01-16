@@ -11,15 +11,15 @@
             <div class="memo mt-4">
                 <div>
                     <label class="mt-3">タイトル</label>
-                    <input name="title" type="text" value="{{ $todo->title }} ">
+                    <input name="title" type="text" value="{{ $todo->title }}">
                 </div>
                 <div>
                     <label class="mt-3">日付</label>
-                    <input name="date" type="text" value="{{ $todo->date }} ">
+                    <input name="date" type="date" value="{{ $todo->date }}">
                 </div>
                 <div>
                     <label class="mt-3">メモ</label>
-                    <input name="memo" type="text" value="{{ $todo->memo }} ">
+                    <textarea name='memo' class="form-control">{{ $todo->memo }}</textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-warning mt-3">更新</button>

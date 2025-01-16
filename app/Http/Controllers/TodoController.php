@@ -96,6 +96,12 @@ class TodoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //対象データ取得
+        $todo = Todo::find($id);
+        // レコード削除
+        $todo->delete();
+
+        // リダイレクト
+        return redirect(route('todos.index'));
     }
 }
