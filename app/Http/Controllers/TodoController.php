@@ -13,7 +13,9 @@ class TodoController extends Controller
     public function index()
     {
         //
-        return view('index');
+        return view('index', [
+            'todos' => Todo::all(),
+        ]);
     }
 
     /**
@@ -52,6 +54,9 @@ class TodoController extends Controller
     public function show(string $id)
     {
         //
+        return view('show', [
+            'todo' => Todo::find($id),
+        ]);
     }
 
     /**
@@ -60,6 +65,9 @@ class TodoController extends Controller
     public function edit(string $id)
     {
         //
+        return view('edit', [
+            'todo' => Todo::find($id),
+        ]);
     }
 
     /**
@@ -67,7 +75,20 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //対象データ取得
+        $todo = Todo::find($id);
+
+        // リクエストデータ取得
+        $data = $request->all();
+
+        // データを更新
+        $todo->title = $data['title'];
+        $todo->date = $data['date'];
+        $todo->memo = $data['memo'];
+        $todo->save();
+
+        // リダイレクト
+        return redirect(route('todos.index'));
     }
 
     /**

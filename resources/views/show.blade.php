@@ -6,14 +6,17 @@
     <div class="wrapper mt-5">
         <h2>詳細</h2>
         <div class="memo mt-4">
-            <label>タイトル</label>
-            <p>今日も頑張った</p>
-            <label>日付</label>
-            <p>2025/02/23</p>
-            <label>メモ</label>
-            <p>こんにちは</p>
+            <label class="mt-3">タイトル</label>
+            <h4>{{ $todo->title }}</h4>
+            <label class="mt-3">日付</label>
+            <h4>{{ $todo->date }}</h4>
+            <label class="mt-3">メモ</label>
+            <h4>{{ $todo->memo }}</h4>
         </div>
-        <a href="#" class="btn btn-secondary mt-3">戻る</a>
+        <div class="d-flex">
+            <a href="{{ route('todos.edit', $todo->id) }}" class="btn btn-success mt-3 mr-2">編集</a>
+            <a href="{{ route('todos.index') }}" class="btn btn-secondary mt-3">戻る</a>
+        </div>
     </div>
 
 @endsection
