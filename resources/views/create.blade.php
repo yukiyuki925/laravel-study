@@ -5,7 +5,7 @@
 
     <div class="wrapper mt-5">
         <h2>作成</h2>
-        <form method="POST" action="{{ route('todos.index') }}">
+        <form method="POST" action="{{ route('todos.store') }}">
             @csrf
             <div class="memo mt-4">
                 <div class="mt-2">
