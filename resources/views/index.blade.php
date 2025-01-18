@@ -3,9 +3,17 @@
 
 @section('content')
 
-    <div class="wrapper mt-5">
+    <div class="wrapper mt-4">
         <h2>一覧</h2>
-        <a href="{{ route('todos.create') }}" class="btn btn-primary mt-3">新規作成</a>
+        <div class="d-flex align-items-center mt-5 mb-4">
+            <a href="{{ route('todos.create') }}" class="btn btn-primary mr-4">新規作成</a>
+            <form method="GET" action="{{ route('todos.index') }}">
+                <div class="d-flex">
+                    <input name="search" class="form-control w-50" placeholder="タイトル" value="{{ $search }}">
+                    <input type="submit" value="検索">
+                </div>
+            </form>
+        </div>
         <div class="index mt-4">
             @foreach ($todos as $todo)
                 <ul>

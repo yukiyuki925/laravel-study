@@ -10,12 +10,20 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('index', [
-            'todos' => Todo::all(),
-        ]);
+        // フォームの値を取得
+        $search = $request->input('search');
+        // デフォルトは降順で表示
+        $query = Todo::orderBy('created_at', 'desc');
+        // 検索をかけた場合
+        if (isset($search)) {
+            $query = Todo::where('title', 'LIKE', '%' . $search . '%');
+        }
+        // 上記結果をpaginate
+        $todos = $query->paginate(30);
+
+        return view('index', compact('todos', 'search'));
     }
 
     /**
