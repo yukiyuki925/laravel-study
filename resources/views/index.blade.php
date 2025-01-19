@@ -10,7 +10,10 @@
             <form method="GET" action="{{ route('todos.index') }}">
                 <div class="d-flex">
                     <input name="search" class="form-control w-50" placeholder="タイトル" value="{{ $search }}">
-                    <input type="submit" value="検索">
+                    <div class="d-flex">
+                        <input class="ml-1" type="submit" value="検索">
+                        <input name="reset" class="ml-1" type="submit" value="リセット">
+                    </div>
                 </div>
             </form>
         </div>

@@ -16,10 +16,17 @@ class TodoController extends Controller
         $search = $request->input('search');
         // デフォルトは降順で表示
         $query = Todo::orderBy('created_at', 'desc');
-        // 検索をかけた場合
+
+        // 検索をかけたらデータを絞る
         if (isset($search)) {
             $query = Todo::where('title', 'LIKE', '%' . $search . '%');
         }
+
+        // リセットを押したら一覧ページにリダイレクト
+        if ($request->filled('reset')) {
+            return redirect(route('todos.index'));
+        }
+
         // 上記結果をpaginate
         $todos = $query->paginate(30);
 
