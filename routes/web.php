@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Route;
 Route::resource('todos', TodoController::class);
 
 // ユーザー
-Route::get('/register', [\App\Http\Controllers\UserController::class, 'showRegister']);
-Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+Route::get('/register', [UserController::class, 'showRegister']);
+Route::post('/register', [UserController::class, 'register']);
 Route::middleware('auth')->group(function () {
-    Route::get('/welcome', [\App\Http\Controllers\UserController::class, 'welcome'])->name('welcome');
+    Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
+    Route::post('logout', [UserController::class, 'logout'])->name('logout');
 });

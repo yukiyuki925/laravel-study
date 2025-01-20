@@ -31,6 +31,12 @@ class UserController extends Controller
         return redirect(route('welcome'));
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
