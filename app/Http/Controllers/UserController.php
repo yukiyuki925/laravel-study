@@ -14,6 +14,11 @@ class UserController extends Controller
         return view('register');
     }
 
+    public function showLogin()
+    {
+        return view('login');
+    }
+
     public function welcome()
     {
         return view('welcome');
@@ -43,5 +48,12 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('welcome');
+        }
+
+        return back();
     }
 }

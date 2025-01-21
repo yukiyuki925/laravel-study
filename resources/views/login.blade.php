@@ -3,13 +3,9 @@
 
 @section('content')
     <div class="w-100 mt-5">
-        <h3>ユーザー登録画面</h3>
-        <form method="POST">
+        <h3>ログイン画面</h3>
+        <form action="" method="POST">
             @csrf
-            <div>
-                <label for="name">名前</label>
-                <input type="text" name="name">
-            </div>
             <div>
                 <label for="email">メールアドレス</label>
                 <input type="email" name="email">
@@ -19,7 +15,7 @@
                 <input type="password" name="password">
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">登録</button>
+                <button class="btn btn-primary" type="submit">ログイン</button>
             </div>
         </form>
     </div>
