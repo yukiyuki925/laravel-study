@@ -18,9 +18,10 @@
                 <label for="password">パスワード</label>
                 <input type="password" name="password">
             </div>
-            <div>
+            <div class="mt-3">
                 <button class="btn btn-primary" type="submit">登録</button>
             </div>
+            <a href="{{ route('login') }}" class="btn btn-secondary mt-3">ログイン画面へ</a>
         </form>
     </div>
 @endsection
