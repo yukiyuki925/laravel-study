@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 
 // todo
-Route::resource('todos', TodoController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('todos', TodoController::class);
+});
 
 // ユーザー
 Route::get('/', [UserController::class, 'showRegister']);
