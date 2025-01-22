@@ -47,14 +47,18 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //リクエストデータを取得
-        $data = $request->all();
+        //リクエストデータをバリデーション
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'memo' => 'nullable|string|max:100',
+        ]);
 
         // モデルを作成し、データをセット
         $Todo = new Todo();
-        $Todo->title = $data['title'];
-        $Todo->date = $data['date'];
-        $Todo->memo = $data['memo'];
+        $Todo->title = $validatedData['title'];
+        $Todo->date = $validatedData['date'];
+        $Todo->memo = $validatedData['memo'];
 
         // データを保存
         $Todo->save();
