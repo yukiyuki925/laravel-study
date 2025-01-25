@@ -123,4 +123,13 @@ class TodoController extends Controller
         // リダイレクト
         return redirect(route('todos.index'));
     }
+
+    public function toggle(Todo $todo)
+    {
+        // 完了状態を反転
+        $todo->is_completed = !$todo->is_completed;
+        $todo->save();
+        // リダイレクト
+        return redirect()->back()->with('status', 'タスクの状態を切り替えました！');
+    }
 }

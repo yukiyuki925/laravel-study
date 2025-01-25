@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // todo
 Route::middleware('auth')->group(function () {
     Route::resource('todos', TodoController::class);
+    Route::PUT('todos/{todo}/toggle', [TodoController::class, 'toggle'])->name('todos.toggle');
 });
 
 // ユーザー

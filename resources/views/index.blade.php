@@ -21,13 +21,24 @@
             @foreach ($todos as $todo)
                 <ul>
                     <div class="d-flex align-items-center">
-                        <li><a href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a></li>
-                        <form method="POST" action="{{ route('todos.destroy', $todo->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm ml-3"
-                                onclick="return confirm('削除しますか？')">削除</button>
-                        </form>
+                        <div class="mr-3">
+                            <form action="{{ route('todos.toggle', $todo->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="checkbox" onchange="this.form.submit()"
+                                    {{ $todo->is_completed ? 'checked' : '' }}>
+                            </form>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <li style="list-style: none"><a
+                                    href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a></li>
+                            <form method="POST" action="{{ route('todos.destroy', $todo->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm ml-3"
+                                    onclick="return confirm('削除しますか？')">削除</button>
+                            </form>
+                        </div>
                     </div>
                 </ul>
             @endforeach
