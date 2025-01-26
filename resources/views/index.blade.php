@@ -30,8 +30,10 @@
                             </form>
                         </div>
                         <div class="d-flex align-items-center">
-                            <li style="list-style: none"><a
-                                    href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a></li>
+                            <li style="list-style: none">
+                                <a style="{{ $todo->is_completed ? 'text-decoration: line-through;' : '' }}"
+                                    href="{{ route('todos.show', $todo->id) }}">{{ $todo->title }}</a>
+                            </li>
                             <form method="POST" action="{{ route('todos.destroy', $todo->id) }}">
                                 @csrf
                                 @method('DELETE')
