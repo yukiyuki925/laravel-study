@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -52,16 +53,23 @@ class TodoController extends Controller
             'title' => 'required|string|max:255',
             'date' => 'required|date',
             'memo' => 'nullable|string|max:100',
+            'tags' => 'nullable|string',
         ]);
 
         // モデルを作成し、データをセット
-        $Todo = new Todo();
-        $Todo->title = $validatedData['title'];
-        $Todo->date = $validatedData['date'];
-        $Todo->memo = $validatedData['memo'];
+        $todo = Todo::create(['title' => $validatedData['title'], 'date' => $validatedData['date'], 'memo' => $validatedData['memo']]);
 
-        // データを保存
-        $Todo->save();
+        if ($request->tags) {
+            $tagNames = explode(',', $request->tags);
+            $tagIds = [];
+
+            foreach ($tagNames as $name) {
+                $tag = Tag::firstOrCreate(['name' => $name]);
+                $tagIds[] = $tag->id;
+            }
+
+            $todo->tags()->sync($tagIds);
+        }
 
         // 一覧ページにリダイレクト
         return redirect(route('todos.index'));

@@ -13,6 +13,10 @@
                     <input name='title' class="form-control" placeholder="タイトル">
                 </div>
                 <div class="mt-2">
+                    <label>タグ</label>
+                    <input name='tags' class="form-control" placeholder="タグ">
+                </div>
+                <div class="mt-2">
                     <label>日付</label>
                     <input name='date' type="date" class="form-control" placeholder="日付">
                 </div>

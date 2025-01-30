@@ -9,8 +9,8 @@ class Tag extends Model
 {
     protected $fillable = ['name'];
 
-    public function tasks(): BelongsToMany
+    public function todos(): BelongsToMany
     {
-        return $this->belongsToMany(Todo::class);
+        return $this->belongsToMany(Todo::class, 'todo_tag');
     }
 }

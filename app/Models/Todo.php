@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
+    protected $fillable = ['title', 'date', 'memo'];
+
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'todo_tag');
     }
 }
