@@ -16,6 +16,9 @@
                     </div>
                 </div>
             </form>
+            <div>
+                <a href="{{ route('tagIndex') }}" class="btn btn-secondary mt-3">タグ一覧へ</a>
+            </div>
         </div>
         <div class="index mt-4">
             @foreach ($todos as $todo)

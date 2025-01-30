@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,3 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
 });
+
+// タグ
+Route::get('/tag', [TagController::class, 'tagIndex'])->name('tagIndex');

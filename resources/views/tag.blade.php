@@ -1,9 +1,9 @@
 @extends('layouts/base')
-@section('title, todo - ログイン')
+@section('title, todo - タグ')
 
 @section('content')
     <div class="w-100 mt-5">
-        <h3>ログイン画面</h3>
+        <h3>タグ一覧</h3>
         <form action="" method="POST">
             @csrf
             <div>
