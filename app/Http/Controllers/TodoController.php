@@ -80,10 +80,8 @@ class TodoController extends Controller
      */
     public function show(string $id)
     {
-        //
-        return view('show', [
-            'todo' => Todo::find($id),
-        ]);
+        $todo = Todo::with('tags')->findOrFail($id);
+        return view('show', compact('todo'));
     }
 
     /**

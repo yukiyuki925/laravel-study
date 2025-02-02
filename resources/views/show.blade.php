@@ -10,6 +10,12 @@
             <h4>{{ $todo->title }}</h4>
             <label class="mt-3">日付</label>
             <h4>{{ $todo->date }}</h4>
+            <label class="mt-3">タグ</label>
+            <ul>
+                @foreach ($todo->tags as $tag)
+                    <li>{{ $tag->name }}</li>
+                @endforeach
+            </ul>
             <label class="mt-3">メモ</label>
             <h4>{{ $todo->memo }}</h4>
         </div>
